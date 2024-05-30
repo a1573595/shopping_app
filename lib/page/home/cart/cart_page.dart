@@ -15,11 +15,13 @@ class CartPage extends StatelessWidget {
   }
 }
 
-class _ListBody extends StatelessWidget {
+class _ListBody extends HookWidget {
   const _ListBody({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final pairAnimation = useBottomUpAnimation();
+
     return Column(
       children: [
         Expanded(
@@ -32,27 +34,30 @@ class _ListBody extends StatelessWidget {
             ),
           ),
         ),
-        Sheet(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                L10n.current.orderTotal,
-                style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                      fontFamily: FontFamily.teko,
-                    ),
-              ),
-              Text(
-                "\$ 100",
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      fontFamily: FontFamily.questrial,
-                    ),
-              ),
-              const SizedBox(
-                height: 32,
-              ),
-              const _CheckButton(),
-            ],
+        SlideTransition(
+          position: pairAnimation.$2,
+          child: Sheet(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  L10n.current.orderTotal,
+                  style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                        fontFamily: FontFamily.teko,
+                      ),
+                ),
+                Text(
+                  "\$ 100",
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        fontFamily: FontFamily.questrial,
+                      ),
+                ),
+                const SizedBox(
+                  height: 32,
+                ),
+                const _CheckButton(),
+              ],
+            ),
           ),
         ),
       ],
@@ -70,54 +75,60 @@ class _CartCell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        vertical: 8,
+    return Card(
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.horizontal(left: Radius.circular(16)),
       ),
-      child: Card(
-        child: ListTile(
-          leading: AspectRatio(
-            aspectRatio: 1,
-            child: Image.asset(
-              cartItem.product.imageAsset,
-              fit: BoxFit.cover,
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      child: Row(
+        children: [
+          Image.asset(
+            height: 80,
+            width: 120,
+            cartItem.product.imageAsset,
+            fit: BoxFit.cover,
+          ),
+          const SizedBox(
+            width: 8,
+          ),
+          Expanded(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  cartItem.product.name,
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        fontFamily: FontFamily.teko,
+                      ),
+                ),
+                Text(
+                  "\$ ${cartItem.product.price}",
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        fontFamily: FontFamily.teko,
+                      ),
+                ),
+              ],
             ),
           ),
-          title: Text(
-            cartItem.product.name,
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.remove),
+          ),
+          Text(
+            "${cartItem.quantity}",
             overflow: TextOverflow.ellipsis,
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  fontFamily: FontFamily.teko,
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                  fontFamily: FontFamily.openSans,
                 ),
           ),
-          subtitle: Text(
-            "\$ ${cartItem.product.price}",
-            overflow: TextOverflow.ellipsis,
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  fontFamily: FontFamily.teko,
-                ),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.add),
           ),
-          trailing: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.remove),
-              ),
-              Text(
-                "${cartItem.quantity}",
-                overflow: TextOverflow.ellipsis,
-                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      fontFamily: FontFamily.openSans,
-                    ),
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.add),
-              ),
-            ],
-          ),
-        ),
+        ],
       ),
     );
   }

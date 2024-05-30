@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:shopping_app/configs.dart';
 import 'package:shopping_app/gen/fonts.gen.dart';
+import 'package:shopping_app/hook/hook_animation.dart';
 import 'package:shopping_app/l10n/l10n.dart';
 import 'package:shopping_app/router/app_router.dart';
 import 'package:shopping_app/utils/regex_util.dart';
@@ -15,7 +16,7 @@ import 'package:shopping_app/widget/twice_pop_scope.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 @RoutePage()
-class LoginPage extends StatelessWidget {
+class LoginPage extends HookWidget {
   const LoginPage({super.key});
 
   @override

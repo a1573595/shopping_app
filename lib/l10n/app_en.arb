@@ -12,6 +12,7 @@
   "email": "Email",
   "password": "Password",
   "signIn": "Sign In",
+  "signOut": "Sign Out",
   "forgotPassword": "Forgot Password",
   "or": "Or",
   "signUp": "Sign Up",

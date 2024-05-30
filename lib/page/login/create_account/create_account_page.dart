@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:shopping_app/configs.dart';
 import 'package:shopping_app/gen/fonts.gen.dart';
+import 'package:shopping_app/hook/hook_animation.dart';
 import 'package:shopping_app/l10n/l10n.dart';
 import 'package:shopping_app/utils/regex_util.dart';
 import 'package:shopping_app/widget/keyboard_dismisses.dart';
@@ -13,11 +14,13 @@ import 'package:shopping_app/widget/sheet.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 @RoutePage()
-class CreateAccountPage extends StatelessWidget {
+class CreateAccountPage extends HookWidget {
   const CreateAccountPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final pairAnimation = useBottomUpAnimation();
+
     return KeyboardDismisses(
       child: Scaffold(
         body: SafeArea(
@@ -56,24 +59,27 @@ class CreateAccountPage extends StatelessWidget {
                             ),
                           ),
                         ),
-                        const Sheet(
-                          child: Column(
-                            children: [
-                              _NameTextField(),
-                              SizedBox(
-                                height: 16,
-                              ),
-                              _EmailTextField(),
-                              SizedBox(
-                                height: 16,
-                              ),
-                              _PasswordTextField(),
-                              SizedBox(
-                                height: 16,
-                              ),
-                              _SignUpButton(),
-                              _HyperLinkText(),
-                            ],
+                        SlideTransition(
+                          position: pairAnimation.$2,
+                          child: const Sheet(
+                            child: Column(
+                              children: [
+                                _NameTextField(),
+                                SizedBox(
+                                  height: 16,
+                                ),
+                                _EmailTextField(),
+                                SizedBox(
+                                  height: 16,
+                                ),
+                                _PasswordTextField(),
+                                SizedBox(
+                                  height: 16,
+                                ),
+                                _SignUpButton(),
+                                _HyperLinkText(),
+                              ],
+                            ),
                           ),
                         ),
                       ],

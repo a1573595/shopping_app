@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:shopping_app/configs.dart';
 import 'package:shopping_app/gen/fonts.gen.dart';
 import 'package:shopping_app/l10n/l10n.dart';
+import 'package:shopping_app/router/app_router.dart';
 import 'package:shopping_app/style/widget_style.dart';
 
 @RoutePage()
@@ -36,8 +37,8 @@ class ProfilePage extends StatelessWidget {
                   child: Text(
                     L10n.current.visitor,
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      fontFamily: FontFamily.questrial,
-                    ),
+                          fontFamily: FontFamily.questrial,
+                        ),
                   ),
                 )
               ],
@@ -91,16 +92,20 @@ class ProfilePage extends StatelessWidget {
                 ),
                 Expanded(
                   child: Card(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: [
-                          const Icon(Icons.login),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          Text(L10n.current.signIn),
-                        ],
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    child: InkWell(
+                      onTap: () => const LoginRoute().push(context),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: [
+                            const Icon(Icons.login),
+                            const SizedBox(
+                              height: 8,
+                            ),
+                            Text(L10n.current.signOut),
+                          ],
+                        ),
                       ),
                     ),
                   ),

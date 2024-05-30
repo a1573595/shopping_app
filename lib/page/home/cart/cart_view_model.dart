@@ -1,7 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:shopping_app/gen/assets.gen.dart';
 import 'package:shopping_app/gen/fonts.gen.dart';
+import 'package:shopping_app/hook/hook_animation.dart';
 import 'package:shopping_app/l10n/l10n.dart';
 import 'package:shopping_app/model/product.dart';
 import 'package:shopping_app/style/widget_style.dart';
