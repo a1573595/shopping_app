@@ -8,8 +8,4 @@ class Configs {
   static const String githubUrl = "https://github.com/a1573595";
 
   static const String apiUrl = "https://github.com/a1573595";
-
-  static const Duration defaultTimeout = Duration(seconds: 15);
-
-  static const Duration defaultAnimDuration = Duration(milliseconds: 500);
 }

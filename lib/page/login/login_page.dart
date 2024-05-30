@@ -26,85 +26,89 @@ class LoginPage extends StatelessWidget {
           body: SafeArea(
             child: Stack(
               children: [
-                Column(
-                  children: [
-                    Expanded(
-                      child: OverflowBox(
-                        maxHeight: double.infinity,
-                        child: Center(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                Configs.appName,
-                                style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                                      fontFamily: FontFamily.teko,
-                                    ),
-                              ),
-                              SizedBox(
-                                height: 36,
-                                child: DefaultTextStyle(
-                                  style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                                        color: Colors.grey,
-                                        fontFamily: FontFamily.questrial,
-                                      ),
-                                  child: AnimatedTextKit(
-                                    pause: const Duration(seconds: 5),
-                                    repeatForever: true,
-                                    animatedTexts: [
-                                      TypewriterAnimatedText(
-                                        L10n.current.everythingYouWant,
-                                        speed: const Duration(milliseconds: 100),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    Sheet(
+                CustomScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  slivers: [
+                    SliverFillRemaining(
+                      hasScrollBody: false,
                       child: Column(
                         children: [
-                          const _EmailTextField(),
-                          const SizedBox(
-                            height: 16,
+                          Expanded(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  Configs.appName,
+                                  style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                                        fontFamily: FontFamily.teko,
+                                      ),
+                                ),
+                                SizedBox(
+                                  height: 36,
+                                  child: DefaultTextStyle(
+                                    style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                                          color: Colors.grey,
+                                          fontFamily: FontFamily.questrial,
+                                        ),
+                                    child: AnimatedTextKit(
+                                      pause: const Duration(seconds: 5),
+                                      repeatForever: true,
+                                      animatedTexts: [
+                                        TypewriterAnimatedText(
+                                          L10n.current.everythingYouWant,
+                                          speed: const Duration(milliseconds: 100),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                          const _PasswordTextField(),
-                          const SizedBox(
-                            height: 8,
+                          Sheet(
+                            child: Column(
+                              children: [
+                                const _EmailTextField(),
+                                const SizedBox(
+                                  height: 16,
+                                ),
+                                const _PasswordTextField(),
+                                const SizedBox(
+                                  height: 8,
+                                ),
+                                const _SignInButton(),
+                                const SizedBox(
+                                  height: 8,
+                                ),
+                                const Align(
+                                  alignment: Alignment.topRight,
+                                  child: _ForgotPasswordText(),
+                                ),
+                                const SizedBox(
+                                  height: 8,
+                                ),
+                                Row(
+                                  children: [
+                                    const Expanded(
+                                      child: Divider(),
+                                    ),
+                                    const SizedBox(
+                                      width: 16,
+                                    ),
+                                    Text(L10n.current.or),
+                                    const SizedBox(
+                                      width: 16,
+                                    ),
+                                    const Expanded(
+                                      child: Divider(),
+                                    ),
+                                  ],
+                                ),
+                                const _SignUpButton(),
+                              ],
+                            ),
                           ),
-                          const _SignInButton(),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          const Align(
-                            alignment: Alignment.topRight,
-                            child: _ForgotPasswordText(),
-                          ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          Row(
-                            children: [
-                              const Expanded(
-                                child: Divider(),
-                              ),
-                              const SizedBox(
-                                width: 16,
-                              ),
-                              Text(L10n.current.or),
-                              const SizedBox(
-                                width: 16,
-                              ),
-                              const Expanded(
-                                child: Divider(),
-                              ),
-                            ],
-                          ),
-                          const _SignUpButton(),
                         ],
                       ),
                     ),

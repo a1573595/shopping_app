@@ -23,15 +23,16 @@ class CreateAccountPage extends StatelessWidget {
         body: SafeArea(
           child: Stack(
             children: [
-              Column(
-                children: [
-                  Expanded(
-                    child: OverflowBox(
-                      child: Center(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            DefaultTextStyle(
+              CustomScrollView(
+                physics: const BouncingScrollPhysics(),
+                slivers: [
+                  SliverFillRemaining(
+                    hasScrollBody: false,
+                    child: Column(
+                      children: [
+                        Expanded(
+                          child: Center(
+                            child: DefaultTextStyle(
                               style: Theme.of(context).textTheme.displayMedium!.copyWith(
                                     fontFamily: FontFamily.teko,
                                   ),
@@ -53,28 +54,28 @@ class CreateAccountPage extends StatelessWidget {
                                 ],
                               ),
                             ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
-                  ),
-                  const Sheet(
-                    child: Column(
-                      children: [
-                        _NameTextField(),
-                        SizedBox(
-                          height: 16,
+                        const Sheet(
+                          child: Column(
+                            children: [
+                              _NameTextField(),
+                              SizedBox(
+                                height: 16,
+                              ),
+                              _EmailTextField(),
+                              SizedBox(
+                                height: 16,
+                              ),
+                              _PasswordTextField(),
+                              SizedBox(
+                                height: 16,
+                              ),
+                              _SignUpButton(),
+                              _HyperLinkText(),
+                            ],
+                          ),
                         ),
-                        _EmailTextField(),
-                        SizedBox(
-                          height: 16,
-                        ),
-                        _PasswordTextField(),
-                        SizedBox(
-                          height: 16,
-                        ),
-                        _SignUpButton(),
-                        _HyperLinkText(),
                       ],
                     ),
                   ),

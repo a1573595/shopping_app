@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:shopping_app/configs.dart';
 import 'package:shopping_app/gen/assets.gen.dart';
 import 'package:shopping_app/style/widget_style.dart';
 import 'package:shopping_app/widget/animated_flip.dart';
@@ -14,7 +13,7 @@ class AnimatedCreditCard extends StatefulWidget {
     required this.expiryDate,
     required this.cardHolderName,
     required this.cvvCode,
-    this.animationDuration = Configs.defaultAnimDuration,
+    this.animationDuration = const Duration(milliseconds: 500),
     this.height,
     this.width,
   });
